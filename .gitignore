@@ -1,0 +1,3 @@
+# cmake excludes
+.cache
+build
