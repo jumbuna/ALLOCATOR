@@ -6,7 +6,7 @@ typedef struct Allocator ALLOCATOR;
 
 ALLOCATOR *allocatorcreate(size_t sz) {
     ALLOCATOR *new = calloc(1, sizeof(ALLOCATOR));
-    ((size_t *) new)[1] = sz;
+    ((size_t *) new)[1] = sz >= sizeof(void *) ? sz : sizeof(void *);
     ((size_t *) new)[3] = __ALLOCATOR__BLOCKENTRIES;
     return new;
 }
