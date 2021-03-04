@@ -19,5 +19,25 @@ $ cmake --build build
 # optional
 $ cmake --build build --target install
 ```
+## EXAMPLES
+```c
+    struct person {
+        int age;
+        double height; /* in meters */
+        char name[20];
+    };
+    /* The internal structure of the allocator is of no use outside the allocator itself so the implicit cast to void * will suffice */
+    void *alloc = allocatorcreate(sizeof(struct person));
+    struct person *new = allocatormalloc(alloc);
+    /** from string.h */
+    strcpy(new->name, "jumbuna");
+    new->age = 50;
+    new->height = 2;
+    allocatorfree(alloc, new);
+    void *new2 = allocatormalloc(alloc);
+    /** new2 == new */
+    allocatordestroy(alloc);
+```
+
 ## CONTRIBUTIONS
 All contributions are welcome. Send me a pull request anytime.
